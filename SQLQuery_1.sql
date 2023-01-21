@@ -1,0 +1,74 @@
+CREATE TABLE categories (
+  ID int IDENTITY(1,1) PRIMARY KEY,
+  NAME varchar(30) NOT NULL,
+  DESCRIPTION text NOT NULL,
+  TAGS varchar(500) NOT NULL
+)
+
+CREATE TABLE notifications (
+  EMAIL_ID varchar(20) NOT NULL,
+  ID int IDENTITY(1,1) PRIMARY KEY,
+  TITLE varchar(50) NOT NULL,
+  DETAIL text NOT NULL
+)
+
+CREATE TABLE order_data (
+  ID int IDENTITY(1,1) PRIMARY KEY,
+  EMAIL_ID varchar(20) NOT NULL,
+  PAYMENT_STATUS int NOT NULL,
+  DATE_TIME timestamp NOT NULL DEFAULT GETDATE(),
+  ITEM_LIST varchar(20) NOT NULL,
+  TOTAL_AMOUNT FLOAT NOT NULL
+)
+
+CREATE TABLE project (
+  ID int IDENTITY(1,1) PRIMARY KEY,
+  NAME varchar(50) NOT NULL,
+  DESCRIPTION text NOT NULL,
+  MEDIA varbinary(5000) NOT NULL,
+  PRICE FLOAT NOT NULL,
+  DATA varbinary(5000) NOT NULL,
+  UPLOADER varchar(50) NOT NULL,
+  UPLOADED_TIME timestamp NOT NULL DEFAULT GETDATE(),
+  CATEGORIES varchar(20) NOT NULL,
+  IS_VERIFIED tinyint NOT NULL
+)
+
+
+CREATE TABLE users (
+  EMAIL_ID varchar(20) NOT NULL,
+  PASSWORD varchar(20) NOT NULL,
+  TYPE varchar(20) NOT NULL
+)
+
+
+CREATE TABLE user_details (
+  EMAIL_ID varchar(20) NOT NULL,
+  FIRST_NAME varchar(20) NOT NULL,
+  LAST_NAME varchar(20) NOT NULL,
+  PHONE_NO varchar(13) NOT NULL,
+  DOB date NOT NULL,
+  WISHLIST varchar(5) NOT NULL,
+  CART_ITEM varchar(30) NOT NULL,
+  MY_PROJECTS varchar(50) NOT NULL,
+  PURCHASING varchar(40) NOT NULL
+)
+
+ALTER TABLE categories
+  ADD PRIMARY KEY (ID);
+
+ALTER TABLE notifications
+  ADD PRIMARY KEY (ID);
+
+ALTER TABLE users
+  ADD PRIMARY KEY (EMAIL_ID);
+
+ALTER TABLE user_details
+  ADD PRIMARY KEY (EMAIL_ID);
+
+ALTER TABLE notifications
+  ADD CONSTRAINT notifications_ibfk_1 FOREIGN KEY (EMAIL_ID) REFERENCES users (EMAIL_ID);
+
+ALTER TABLE user_details
+  ADD CONSTRAINT user_details_ibfk_1 FOREIGN KEY (EMAIL_ID) REFERENCES users (EMAIL_ID);
+COMMIT;
