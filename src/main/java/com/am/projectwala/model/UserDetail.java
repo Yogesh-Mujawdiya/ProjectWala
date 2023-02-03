@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "user_details")
 public class UserDetail {
+
     @Id
     @Column(name = "EMAIL_ID")
     String emailId;
