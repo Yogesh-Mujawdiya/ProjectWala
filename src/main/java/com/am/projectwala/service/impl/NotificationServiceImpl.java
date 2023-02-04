@@ -4,10 +4,12 @@ import com.am.projectwala.model.Notification;
 import com.am.projectwala.repositories.NotificationRepository;
 import com.am.projectwala.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class NotificationServiceImpl implements NotificationService {
 
     @Autowired

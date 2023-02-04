@@ -9,19 +9,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "user")
+@RequestMapping(value = "pw-user")
 public class UserController {
 
     @Autowired
     UserServiceImpl userService;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<UserDetail> login(@RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<UserDetail> loginUser(@RequestParam String email, @RequestParam String password) {
         return new ResponseEntity<>(userService.login(email, password), HttpStatus.OK);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<UserDetail> signup(@RequestBody UserDetail userDetail, @RequestParam String password) {
+    public ResponseEntity<UserDetail> signupUser(@RequestBody UserDetail userDetail, @RequestParam String password) {
         return new ResponseEntity<>(userService.signup(userDetail, password), HttpStatus.OK);
     }
 
@@ -35,8 +35,8 @@ public class UserController {
         return new ResponseEntity<>(userService.signup(userDetail, password), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<User> updateUserType(@RequestParam String emailId, String type) {
+    @RequestMapping(value = "/update-type", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<User> updateUserType(@RequestParam String emailId, @RequestParam String type) {
         return new ResponseEntity<>(userService.setUserType(emailId, type), HttpStatus.OK);
     }
 

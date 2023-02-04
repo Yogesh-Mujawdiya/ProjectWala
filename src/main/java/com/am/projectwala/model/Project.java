@@ -1,14 +1,14 @@
 package com.am.projectwala.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.type.descriptor.jdbc.VarbinaryJdbcType;
 
 import java.sql.Timestamp;
+import java.time.Instant;
+
+import static io.swagger.v3.oas.annotations.media.Schema.AccessMode.READ_ONLY;
 
 @Entity
 @Getter
@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 public class Project {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID")
     int id;
 
@@ -26,20 +27,23 @@ public class Project {
     @Column(name = "DESCRIPTION")
     String description;
 
-//    @Column(name = "MEDIA")
-//    VarbinaryJdbcType media;
-
     @Column(name = "PRICE")
     Double Price;
 
-//    @Column(name = "DATA")
-//    VarbinaryJdbcType data;
+    @Lob
+    @Column(name = "MEDIA")
+    byte[] media;
+
+    @Lob
+    @Column(name = "DATA")
+    byte[] data;
 
     @Column(name = "UPLOADER")
     String uploader;
 
+    @Schema(accessMode = READ_ONLY)
     @Column(name = "UPLOADED_TIME")
-    Timestamp uploadedTime;
+    Timestamp uploadedTime = Timestamp.from(Instant.now());
 
     @Column(name = "CATEGORIES")
     String categories;

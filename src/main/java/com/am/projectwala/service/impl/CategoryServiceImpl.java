@@ -4,10 +4,12 @@ import com.am.projectwala.model.Categories;
 import com.am.projectwala.repositories.CategoryRepository;
 import com.am.projectwala.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired

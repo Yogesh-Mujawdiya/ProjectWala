@@ -4,10 +4,12 @@ import com.am.projectwala.model.OrderData;
 import com.am.projectwala.repositories.OrderDataRepository;
 import com.am.projectwala.service.OrderDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class OrderDataServiceImpl implements OrderDataService {
 
     @Autowired

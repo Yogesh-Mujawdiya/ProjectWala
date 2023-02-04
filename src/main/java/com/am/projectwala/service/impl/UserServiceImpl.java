@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setEmailId(userDetail.getEmailId());
         user.setPassword(password);
+        user.setType("user");
         userRepository.save(user);
         return userDetailRepository.save(userDetail);
     }
@@ -58,7 +59,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User setUserType(String emailId, String type) {
-        if(userRepository.updateTypeByEmailId(emailId, type)==1) {
+        if(userRepository.updateTypeByEmailId(type, emailId)==1) {
             Optional<User> userData = userRepository.findById(emailId);
             if(userData.isEmpty())
                 return null;
