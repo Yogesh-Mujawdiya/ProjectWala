@@ -7,16 +7,11 @@ jobs:
       - name: JMeter Test
         uses: QAInsights/PerfAction@v3.1
         with:
-          test-plan-path: ./TestPlans/S01_SimpleExample/S01_SimpleExample.jmx
+          test-plan-path: ./jmeter.jmx
           args: ""
-      - name: Create Folder
-        uses: actions/checkout@v3
-        with:
-          run: mkdir -p path/to/artifact
-      - name: Create File
-        uses: actions/checkout@v3
-        with:
-          run: echo hello > path/to/artifact/result.jtl
+          artifacts:
+            paths:
+              - testresults.jtl
       - name: Upload Results
         uses: actions/upload-artifact@v3
         with:
