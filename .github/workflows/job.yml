@@ -9,8 +9,16 @@ jobs:
         with:
           test-plan-path: ./TestPlans/S01_SimpleExample/S01_SimpleExample.jmx
           args: ""
+      - name: Create Folder
+        uses: actions/checkout@v3
+        with:
+          run: mkdir -p path/to/artifact
+      - name: Create File
+        uses: actions/checkout@v3
+        with:
+          run: echo hello > path/to/artifact/result.jtl
       - name: Upload Results
         uses: actions/upload-artifact@v3
         with:
-          name: jmeter-results
-          path: result.jtl
+          name: my-artifact
+          path: path/to/artifact/result.jtl
