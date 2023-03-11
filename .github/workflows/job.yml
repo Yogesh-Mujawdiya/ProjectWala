@@ -9,11 +9,3 @@ jobs:
         with:
           test-plan-path: ./jmeter.jmx
           args: ""
-          artifacts:
-            paths:
-              - testresults.jtl
-      - name: Upload Results
-        uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: path/to/artifact/result.jtl
